@@ -1,11 +1,11 @@
-#This is a Guess the Number game
-import random
+#Guess the Number game
+import random # import module "random"
 
 guessesTaken = 0
 print('Hello! What is your name?')
 myName=input()
 
-number=random.randint(1,20)
+number=random.randint(1,20) # Call the function "
 print('Well, '+myName+', I am thinking of a number between 1 and 20.')
 
 for guessesTaken in range(6):
