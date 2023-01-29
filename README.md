@@ -1,6 +1,6 @@
 # Gaming
 
-##List of my gaming programming projects
+## List of my gaming programming projects
 
 1.Guess the Number
 
