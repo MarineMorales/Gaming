@@ -7,10 +7,11 @@
 
 ## How to run the games in your Command Prompt
 
->Input 1: C:\Users\ *[User_Name]* >cd *[Link to folder where your saved the .py file including the script you want ot run]*
+Input 1: C:\Users\*[Your_User_Name]* >cd C:\Users\*[Your_User_Name]*[Folder location where you've saved the .py file with the script you want to run]*
 
-Output 1: C:\Users\ *[User_Name]* >cd *[Link to folder where your saved the .py file including the script you want ot run]*
+Input 2: C:\Users\*[Your_User_Name][Folder location where you've saved the .py file with the script you want to run]* >python *[.py file with the script you want to run]*.py 
 
->Input 2: C:\Users\ *[User_Name]* \*[Link to folder where your saved the .py file including the script you want ot run]*>python *[Name of the file you want to run]*.py 
+For instance, if you want to run the python File named *GuessTheNumber.py* in the folder named *PythonGameFolder* located on your desktop, you will need the follow the prompt below:
 
-Output 2: Your code outputs
+>C:\Users\MarineMorales>cd C:\Users\MarineMorales\OneDrive\Bureau\PythonGameFolder
+>C:\Users\MarineMorales\OneDrive\Desktop\PythonGameFolder>Python GuessTheNumber.py
