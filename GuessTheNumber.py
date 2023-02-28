@@ -1,11 +1,11 @@
 #Guess the Number game
-import random # import module "random"
+import random #Import module "random"
 
 guessesTaken = 0
 print('Hello! What is your name?')
 myName = input()
 
-number = random.randint(1,20) # Call the function "randit"
+number = random.randint(1,20) #Call the function "randit"
 print('Well, '+ myName +', I am thinking of a number between 1 and 20.')
 
 for guessesTaken in range(6):
@@ -13,7 +13,7 @@ for guessesTaken in range(6):
 	guess = input()
 	guess = int(guess)
 	
-# Do not confuse the boolean comparison operator "==" (True vs False output) with the assignment operator "=".
+#Do not confuse the boolean comparison operator "==" (True vs False output) with the assignment operator "=".
 
 	if guess < number: # This is a boolean data comparison
 		print('Your guess is too low.')
