@@ -14,13 +14,10 @@ for guessesTaken in range(6):
 	guess = int(guess)
 	
 #Do not confuse the boolean comparison operator "==" (True vs False output) with the assignment operator "=".
-
 	if guess < number: # This is a boolean data comparison
 		print('Your guess is too low.')
-
 	if guess > number:
 		print('Your guess is too high.')
-
 	if guess == number:
 		break
 
