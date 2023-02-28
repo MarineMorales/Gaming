@@ -1,4 +1,5 @@
-#Game: Guess the Number
+#Game:
+#Guess the Number
 
 #Rules: 
 #The computer will think of a secret number from 1 to 20 and ask the user to guess it. 
