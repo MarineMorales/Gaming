@@ -16,3 +16,7 @@ For instance, if you want to run the python File named *GuessTheNumber.py* locat
 
 >C:\Users\MarineMorales>cd C:\Users\MarineMorales\OneDrive\Desktop\PythonGameFolder
 >C:\Users\MarineMorales\OneDrive\Desktop\PythonGameFolder>Python GuessTheNumber.py
+
+## Sources
+
+Invent your own computer games with Python by Al Sweigart
