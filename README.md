@@ -12,6 +12,8 @@ In this program, we choose a for loop because we know in advance the number of t
 
 The player is in a land full of dragons. The dragons all live in caves with their large piles of collected treasure. Some dragons are friendly and share their treasure. Other dragons are hungry and eat anyone who enters their cave. The player approaches two caves, one with a friendly dragon and the other with a hungry dragon, but doesn't know which dragon is in the cave. The players decides between the two.
 
+In this program, we choose a while loop because the number of iterations is not predetermined. The while loop is used to repeatedly execute a block of code until a certain condition is met, which is useful in situations where the number of iterations is not predetermined. Indeed, the user is prompted to choose a cave, and we check to ensure until the input is either '1' or '2'. Also, we allow the user to play again, and we will repeatedly execute the game until the user chooses not to play again. 
+
 3. The Hagman
 
 Hangman is a game for two people in which one player thinks of a word and then draws a blank line on the page for each letter in the word.
