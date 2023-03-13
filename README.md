@@ -6,6 +6,8 @@
 
 The computer will think of a secret number from 1 to 20 and ask the user to guess it.  After each guess, the computer will tell the user whether the number is too high or too low. The user wins if they can guess the number within six tries.
 
+In this program, we choose a for loop because we know in advance the number of times we want to iterate, which is 6. The for loop is specifically designed for iterating over a sequence, such as a range of numbers or elements in a list, and executing a block of code for each iteration. 
+
 2. Dragon Realm
 
 The player is in a land full of dragons. The dragons all live in caves with their large piles of collected treasure. Some dragons are friendly and share their treasure. Other dragons are hungry and eat anyone who enters their cave. The player approaches two caves, one with a friendly dragon and the other with a hungry dragon, but doesn't know which dragon is in the cave. The players decides between the two.
