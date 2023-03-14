@@ -16,11 +16,10 @@ In this program, we choose a while loop because the number of iterations is not 
 
 3. The Hagman
 
-Hangman is a game for two people in which one player thinks of a word and then draws a blank line on the page for each letter in the word.
-The second player then tries to guess letters that might be in the word.
-If the second player guesses the letter correctly, the first player writes the letter in the proper blank.
-But if the second player guesses incorrectly, the first player draws a single body part of a hanging man.
-The second player has to guess all the letters in the word before the hanging man is completely drawn to win the game.
+Hangman is a game for two people in which one player thinks of a word and then draws a blank line on the page for each letter in the word. The second player then tries to guess letters that might be in the word. If the second player guesses the letter correctly, the first player writes the letter in the proper blank.
+But if the second player guesses incorrectly, the first player draws a single body part of a hanging man. The second player has to guess all the letters in the word before the hanging man is completely drawn to win the game.
+
+In this program, we choose a while True loop because the number of iterations is not predetermined and depends on the player's decision not to play again. A while True loop is a form of a while loop that continues to execute indefinitely until it encounters a break statement. The gameIsDone variable is used to keep track of whether the game is finished or not. Hence if the game is done, the while loop is broken by a break statement.
 
 ## How to run the games in your Command Prompt
 
