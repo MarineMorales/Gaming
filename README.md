@@ -33,6 +33,12 @@ But if the second player guesses incorrectly, the first player draws a single bo
 
 **Main mechanic**: In this program, we do not choose a for loop even though we know in advance the number of maximum times the player can iterate the guesses, which is 10. Instead we also choose a while True loop because the number of times the game will be played depends on the player's decision whether or not to play again.
 
+**6. Sonar Treasure Hunt**
+
+**Rules**:In this game, the player drops snoar devices at various places in the ocean to locate treasure chests sunken under the sea. The sonar devices will then tell the player how far away the closest treasure chest is, but not in what direction. Hence the player needs to place mutliple sonar devices to be able to figure out the location of the treasure chest. The player has only 20 sonar devices to use to find the 3 treasure chests.
+
+**Mechanics**: In this program, we use a Cartesian coordinate system. Coordinates are numbers that represent a specific point on the screen. We also use in this program data structures constituted of lists within lists.
+
 ## How to run the games in your Command Prompt
 
 **Input 1**: C:\Users\Your_User_Name>cd C:\Users\Your_User_Name\Code_Folder_location
