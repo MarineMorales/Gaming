@@ -45,6 +45,12 @@ But if the second player guesses incorrectly, the first player draws a single bo
 
 **Mechanics**: We introduce the list comprehension method. It is a concise way to create lists in Python. It allows us to create a list based on an existing list, using a single line of code.
 
+**8. Reversi**
+
+**Rules**: This two-player board game is played on a grid, so we'll use a Cartesian coordinate system with x- and y-coordinates. We will offer the opportunity to play against an AI or test the AI playing against itself.
+
+**Mechanics**: We introduce the AI simulation testing.
+
 ## How to run the games in your Command Prompt
 
 **Input 1**: C:\Users\Your_User_Name>cd C:\Users\Your_User_Name\Code_Folder_location
