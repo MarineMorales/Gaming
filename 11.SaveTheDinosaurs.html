@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--Save The Dinosaurs | javascript version-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save the Dinosaurs</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="SaveTheDinosaurs" width="800" height="400"></canvas>
+    <script>
+		<!--1. INITIATLISE non reassignable variables-->
+		const canvas = document.getElementById("SaveTheDinosaurs");
+        const ctx = canvas.getContext("2d");
+		const paddleWidth = 10;
+        const paddleHeight = 100;
+        const paddleSpeed = 5;
+		
+		<!--2. DEFINE Reassignable variables-->
+        let player = {
+            x: 10,
+            y: canvas.height / 2 - paddleHeight / 2,
+            score: 0
+        };
+
+        let ai = {
+            x: canvas.width - (10 + paddleWidth),
+            y: canvas.height / 2 - paddleHeight / 2,
+            score: 0
+        };
+
+        let ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 10,
+            speed: 4,
+            dx: -4,
+            dy: 4
+        };
+		
+		<!--3. DRAW-->
+		<!--Paddle-->
+        function drawPaddle(x, y) {
+            ctx.beginPath();
+            ctx.rect(x, y, paddleWidth, paddleHeight);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
+        }
+		<!--Ball-->
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "white";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function movePlayer(e) {
+            let rect = canvas.getBoundingClientRect();
+            player.y = e.clientY - rect.top - paddleHeight / 2;
+        }
+
+        function moveAI() {
+            let paddleCenter = ai.y + paddleHeight / 2;
+            if (paddleCenter < ball.y - 35) {
+                ai.y += paddleSpeed;
+            } else if (paddleCenter > ball.y + 35) {
+                ai.y -= paddleSpeed;
+            }
+        }
+
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.dx = -ball.dx;
+            ball.dy = -4 + 8 * Math.random();
+        }
+
+        function collision(ball, paddle) {
+            return ball.x - ball.radius < paddle.x + paddleWidth &&
+                ball.x + ball.radius > paddle.x &&
+                ball.y - ball.radius < paddle.y + paddleHeight &&
+                ball.y + ball.radius > paddle.y;
+        }
+
+        function update() {
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) {
+                ball.dy = -ball.dy;
+            }
+
+            if (collision(ball, player)) {
+                ball.dx = -ball.dx;
+                ball.dy = (ball.y - (player.y + paddleHeight / 2)) / 4;
+            } else if (collision(ball, ai)) {
+                ball.dx = -ball.dx;
+                ball.dy = (ball.y - (ai.y + paddleHeight / 2)) / 4;
+            }
+
+            if (ball.x + ball.radius < 0) {
+                ai.score++;
+                resetBall();
+            } else if (ball.x - ball.radius > canvas.width) {
+                player.score++;
+                resetBall();
+            }
+
+            moveAI();
+        }
+
+        function draw() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            drawPaddle(player.x, player.y);
+            drawPaddle(ai.x, ai.y);
+            drawBall();
+
+            ctx.font = "48px monospace";
+            ctx.fillStyle = "white";
+            ctx.fillText(player.score, canvas.width / 4, 50);
+            ctx.fillText(ai.score, (3 * canvas.width) / 4, 50);
+
+            requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener("mousemove", movePlayer);
+        setInterval(update, 1000 / 60);
+        requestAnimationFrame(draw);
+    </script>
+</body>
+</html>
