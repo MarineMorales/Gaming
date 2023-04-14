@@ -1,0 +1,117 @@
+<!-- Guess The number | javascript version -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!--<h2>Guess the Number</h2>-->
+	
+	<!-- Area to get the player's name -->
+    <div id="nameArea" style="display: none;">
+        <p id="nameText"></p>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button id="saveNameButton" onclick="saveName();style.display = 'none'">Enter your Name</button>
+    </div>
+
+	<!-- Area to get the player's guesses -->
+    <div id="guessArea" style="display: none;">
+        <p id="guessText"></p>
+        <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="20">
+        <button id="guessButton" onclick="submitGuess()">Submit Guess</button>
+        <p id="resultText"></p>
+    </div>
+	
+	<!-- Area to get the player's play again validation -->
+	<div id="playAgainArea" style="display: none;">
+		<button id="playAgainButton" onclick="playAgain();style.display = 'none'">Play Again</button>
+    </div>
+
+    <script>
+		// Get references to all the HTML elements that will be manipulated by the code
+        let nameArea = document.getElementById("nameArea");
+        let nameText = document.getElementById("nameText");
+        let nameInput = document.getElementById("nameInput");
+        let saveNameButton = document.getElementById("saveNameButton");
+        let guessArea = document.getElementById("guessArea");
+        let guessText = document.getElementById("guessText");
+        let guessInput = document.getElementById("guessInput");
+        let guessButton = document.getElementById("guessButton");
+        let resultText = document.getElementById("resultText");
+		let playAgainArea = document.getElementById("playAgainArea");
+        let playAgainButton = document.getElementById("playAgainButton");
+		
+		// Initialize the variables to be used in the game
+        let myName;
+        let number;
+        let guessesTaken;
+		
+		// Display the area to get the player's name
+		nameText.textContent = `Hello! What is your name?`;
+        nameArea.style.display = "block";
+        saveNameButton.style.display = "inline-block";
+		
+		// Function that only kick starts the game to save the name of the player
+		function saveName() {
+			myName = nameInput.value;
+			generateGuess();
+		}
+		
+		// Function to start the game guessing loop
+        function generateGuess() {
+			// Generate a random number between 1 and 20 that the player needs to guess
+            number = Math.floor(Math.random() * 20) + 1;
+			// Initialize the number of guesses taken by the player
+            guessesTaken = 0;
+			
+			// Display the instructions for the game and show the area to get the player's guesses
+            guessText.textContent = `Well, ${myName}, I am thinking of a number between 1 and 20. \nYou have a total of 6 guesses.`;
+            guessArea.style.display = "block";
+            guessButton.style.display = "inline-block";
+        }
+		
+		// Function to submit the player's guess
+        function submitGuess() {
+			// Increase the number of guesses taken by the player
+            guessesTaken++;
+			 // Get the player's guess from the input field and convert it to an integer
+            let guess = parseInt(guessInput.value);
+			
+			// Check if the player's guess is too low/high or correct & display the message accordingly
+            if (isNaN(guess) || guess < 1 || guess > 20) {
+				resultText.textContent = "Please enter a number between 1 and 20.";
+			} else if (guess < number) {
+                resultText.textContent = `Your guess is too low. \nYou have ${6 - guessesTaken} chances left.`;
+            } else if (guess > number) {
+                resultText.textContent = `Your guess is too high. \nYou have ${6 - guessesTaken} chances left.`;
+            } else {
+                resultText.textContent = `Good job, ${myName}! You guessed my number in ${guessesTaken} guess(es)!`;
+				guessButton.style.display = "none";
+				playAgainArea.style.display = "block";
+				playAgainButton.style.display = "inline-block";
+            }
+
+            if (guessesTaken >= 6 && guess != number) {
+                resultText.textContent = `Nope. The number I was thinking of was ${number}.`;
+				guessButton.style.display = "none";
+				playAgainArea.style.display = "block";
+				playAgainButton.style.display = "inline-block";
+            }
+        }
+		
+		// Function to only resets the games when the player wants to play again
+		function playAgain() {
+			guessInput.value=""
+			resultText.textContent =""
+			generateGuess();
+		}
+		
+    </script>
+</body>
+</html>
