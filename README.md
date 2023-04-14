@@ -51,7 +51,9 @@ But if the second player guesses incorrectly, the first player draws a single bo
 
 **Python Main Mechanics**: We introduce the AI simulation testing.
 
-## How to run the games in your Command Prompt
+## How to run the python games in your Command Prompt
+
+The python version are the files finishing with the .py extensions.
 
 **Input 1**: C:\Users\Your_User_Name>cd C:\Users\Your_User_Name\Code_Folder_location
 
