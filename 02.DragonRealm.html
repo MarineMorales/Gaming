@@ -1,0 +1,189 @@
+<!-- Dragon Realm | javascript version -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Realm</title>
+    <style>
+		@font-face {
+			font-family: myFont;
+			src: url('https://marinemorales.com/Code/MedievalTimes.ttf');
+		}
+        body {
+            font-family: myFont, sans-serif;
+			font-size: 15px;
+        }
+		button {
+			font-family: myFont, sans-serif;
+			font-size: 15px;
+			display: block;
+			width: 200px;
+			height: auto;
+			margin-top: 5px;
+		}
+		.container {
+			display: inline-block;
+			flex-direction: row;
+			align-items: left;
+			justify-content: center;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		img {
+			width: 200px;
+			height: auto;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+    </style>
+</head>
+<body>
+	<!--<h2>Dragon Realm/</h2>-->
+
+	<!-- Area to display the introduction -->
+    <div id="introArea" style="display: none;">
+		<p id="introText"></p>
+    </div>
+	
+	<!-- Area to get the selection buttons -->
+    <div id="choiceArea" style="display: none;">
+		<div class="container">
+			<img id="cave1Img" src="" alt="Cave 1">
+			<button id="choice1Button" onclick="chosenCave1()">Cave 1</button>
+		</div>
+		<div class="container">
+			<img id="cave2Img" src="" alt="Cave 2">
+			<button id="choice2Button" onclick="chosenCave2()">Cave 2</button>
+		</div>
+    </div>
+	
+	<!-- Area to display the results -->
+    <div id="resultArea" style="display: none;">
+		<p id="resultText"></p>
+    </div>
+	
+	<!-- Area to display the image result -->
+    <div id="resultImgArea" style="display: none;">
+		<img id="resultImg" src="" alt="Result Img">
+    </div>
+	
+	<!-- Area to get the player's play again validation -->
+	<div id="playAgainArea" style="display: none;">
+		<button id="playAgainButton" onclick="playAgain()">Play Again</button>
+    </div>
+	
+    <script>
+	
+		// Get references to all the HTML elements that will be manipulated by the code
+        let introArea = document.getElementById("introArea");
+        let introText = document.getElementById("introText");
+		let choiceArea = document.getElementById("choiceArea");
+        let choice1Button = document.getElementById("choice1Button");
+        let choice2Button = document.getElementById("choice2Button");
+		let resultArea = document.getElementById("resultArea");
+        let resultText = document.getElementById("resultText");
+		let playAgainArea = document.getElementById("playAgainArea");
+        let playAgainButton = document.getElementById("playAgainButton");
+		let cave1Img = document.getElementById("cave1Img");
+		let cave2Img = document.getElementById("cave2Img");
+		let resultImgArea = document.getElementById("resultImgArea");
+		let resultImg = document.getElementById("resultImg");
+		
+		// Save the result URLs
+		let resultImage = '';
+		let winresultImage = "https://marinemorales.com/Code/friendlydragon1.PNG";
+		let loseresultImage = "https://marinemorales.com/Code/notfriendlydragon1.PNG";
+		
+		// Create an array of image URLs
+		const caveImages = [
+			"https://marinemorales.com/Code/Cave1.PNG", 
+			"https://marinemorales.com/Code/Cave2.PNG", 
+			"https://marinemorales.com/Code/Cave3.PNG",
+			"https://marinemorales.com/Code/Cave4.PNG"
+		];
+		
+		// Display the introduction area
+		displayIntro();
+		
+		// Function to display the introduction text
+		async function displayIntro() {
+			introArea.style.display = "block";
+			introText.innerHTML = `You are in a land full of dragons.<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+            introText.innerHTML += `In front of you, you see two caves.<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+            introText.innerHTML += `In one cave, the dragon is friendly and will share his treasure with you.<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+            introText.innerHTML += `The other dragon is greedy and hungry, and will eat you on sight.<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+            introText.innerHTML += `Which cave will you go into? (1 or 2)`;
+			await new Promise(resolve => setTimeout(resolve, 2000));
+			displayButtons()
+		}
+		
+		// Function to display the choosing buttons
+		function displayButtons() {
+			// Generate 2 different random indexes between 0 and the length of the array minus one
+			let randomCaveIndex1 = Math.floor(Math.random() * caveImages.length);
+			let randomCaveIndex2 = Math.floor(Math.random() * (caveImages.length - 1));
+			// Ensure the indexes are different
+			if (randomCaveIndex2 >= randomCaveIndex1) {
+				 randomCaveIndex2++;
+			}
+			// Get the image URLs at the random indexes
+			let randomCaveImage1 = caveImages[randomCaveIndex1];
+			let randomCaveImage2 = caveImages[randomCaveIndex2];
+			cave1Img.src = randomCaveImage1;
+			cave2Img.src = randomCaveImage2;
+			choiceArea.style.display = "block";
+		}
+		
+		// Function do validate cave 1 selection
+		function chosenCave1() {
+			let chosenCave = 1;
+			checkCave(chosenCave)
+		}
+		
+		// Function do validate cave 2 selection
+		function chosenCave2() {
+			let chosenCave = 2;
+			checkCave(chosenCave)
+		}
+		
+		// Function to check the selected cave
+		async function checkCave(chosenCave) { 
+			introArea.style.display = "none";
+			choiceArea.style.display = "none";
+			resultArea.style.display = "block";
+			resultText.innerHTML = `You approach the cave ` + chosenCave + ` ...<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+			resultText.innerHTML += `It is dark and spooky...<br />`
+			await new Promise(resolve => setTimeout(resolve, 2000));
+			resultText.innerHTML += `A large dragon jumps out in front of you! He opens his jaws and ...<br />`
+			let friendlyCave = Math.floor(Math.random() * 2) + 1;
+			await new Promise(resolve => setTimeout(resolve, 2000));
+			if (chosenCave == friendlyCave) {
+				resultText.innerHTML += `Gives you his treasure!`;
+				resultImage = winresultImage;
+			} else {
+				resultText.innerHTML += `Gobbles you down in one bite!`;
+				resultImage = loseresultImage;
+			}
+			resultImg.src = resultImage;
+			resultImgArea.style.display = "block";
+			playAgainArea.style.display = "block";
+			playAgainButton.style.display = "inline-block";
+		}
+		
+		// Function to only resets the games when the player wants to play again
+		function playAgain() {
+			playAgainArea.style.display = "none";
+			resultArea.style.display = "none";
+			resultImgArea.style.display = "none";
+			resultText.innerHTML = ``;
+			displayIntro();
+		}
+			
+	</script>
+</body>
+</html>

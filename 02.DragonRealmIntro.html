@@ -1,0 +1,37 @@
+<!-- Dragon Realm | html intro -->
+<html lang="en">
+<body>
+    <div id="welcomeArea2" style="display: none;">
+        <button id="playButton2" onclick="welcome2();style.display = 'none'">Play</button>
+    </div>
+	
+	<div id="playArea2" style="display: none;">
+		<iframe id="playFrame2" width="800" height="300" style="border:none;"></iframe>
+    </div>
+
+	<div id="goodbyeArea2" style="display: none;">
+		<button id="goodbyeButton2" onclick="goodbye2();style.display = 'none'">Exit Game</button>
+    </div>
+
+    <script>
+	
+		welcomeArea2.style.display = "block";
+		playButton2.style.display = "inline-block";
+
+        function welcome2() {
+			playArea2.style.display = "block";
+            playFrame2.src ='https://marinemorales.com/Code/02.DragonRealm.html'
+			goodbyeArea2.style.display = "block";
+			goodbyeButton2.style.display = "inline-block";
+        }
+		
+		function goodbye2() {
+		    playArea2.style.display = "none";
+			goodbyeArea2.style.display = "none";
+            welcomeArea2.style.display = "block";
+            playButton2.style.display = "inline-block";
+        }
+
+    </script>
+</body>
+</html>
