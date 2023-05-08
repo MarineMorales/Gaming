@@ -1,0 +1,44 @@
+<!-- Tic Tac Toe | html intro -->
+<html lang="en">
+<body>
+    <div id="welcomeArea4" style="display: none;">
+        <button id="playButton4" onclick="welcome4()">Play</button>
+    </div>
+	
+	<div id="playArea4" style="display: none;">
+		<iframe id="playFrame4" width="800" height="400" style="border:none;"></iframe>
+    </div>
+
+	<div id="goodbyeArea4" style="display: none;">
+		<button id="goodbyeButton4" onclick="goodbye4();">Exit Game</button>
+    </div>
+
+    <script>
+		
+		const playFrame4 = document.getElementById('playFrame4');
+		const playButton4 = document.getElementById('playButton4');
+		const goodbyeButton4 = document.getElementById('goodbyeButton4');
+		
+		welcomeArea4.style.display = "block";
+		playButton4.style.display = "inline-block";
+	
+        function welcome4() {
+			playArea4.style.display = "block";
+			playFrame4.src = 'https://marinemorales.com/Code/04.TicTacToe.html';
+			goodbyeArea4.style.display = "block";
+			goodbyeButton4.style.display = "inline-block";
+			welcomeArea4.style.display = "none";
+            playButton4.style.display = "none";
+        }
+		
+		function goodbye4() {
+		    playArea4.style.display = "none";
+			playFrame4.src = '';
+			goodbyeArea4.style.display = "none";
+            welcomeArea4.style.display = "block";
+            playButton4.style.display = "inline-block";
+        }
+
+    </script>
+</body>
+</html>
