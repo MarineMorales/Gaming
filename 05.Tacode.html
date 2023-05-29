@@ -1,0 +1,514 @@
+<!-- Tacode | javascript version -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacode</title>
+	<style>
+        @font-face {
+			font-family: myFont1;
+			src: url('https://marinemorales.com/Code/ElBurrito.ttf');
+		}
+        @font-face {
+			font-family: myFont2;
+			src: url('https://marinemorales.com/Code/Accompli2.ttf');
+		}
+        @font-face {
+			font-family: myFont3;
+			src: url('https://marinemorales.com/Code/HolyRavioli2.ttf');
+		}
+        @keyframes fall {
+            0% { top: -50px;}
+            100% { top: 100%;}
+        }
+		body {
+			background-image: url('https://marinemorales.com/Code/TacoBoard.PNG');
+			background-size: 650px 400px;
+			background-repeat: no-repeat;
+			background-position: top left;
+			color: white;
+		}
+        body {
+			font-family: myFont2, sans-serif;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+            letter-spacing: 0px;
+			text-align: center;
+		}
+        .game-container {
+            width: 650px;
+            height: 385px;
+			display: flex;
+            flex-direction: row;
+            overflow: hidden;
+		}
+        .left-container {
+            width: 385px;
+            height: 400px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .title-container {
+            width: 385px;
+            height: 110px;
+            text-align: center;
+            justify-content: center;
+            display: block;
+            color: #74D208;
+            font-size: 30;
+            font-family: myFont3, sans-serif;
+            letter-spacing: 5px;
+            text-shadow: -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, 2px 2px 0 #000000;
+        }
+        .intro-container {
+            width: 365px;
+            height: auto;
+            margin-left: 10px;
+            color: #FFFFFF;
+            font-family: myFont3, sans-serif;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+        }
+        .intro-container button {
+            width: 300px;
+            height: 50px;
+            background-image: url('https://marinemorales.com/Code/tortillaBackground.PNG');
+            background-size: cover;
+            background-position: center;
+            font-family: myFont3, sans-serif;
+			font-size: 30;
+            text-align: center;
+            color: #74D208;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+		}
+        .intro-container1 {
+            display: block;
+            text-align: center;
+            justify-content: center;
+            font-size: 20;
+        }
+        .intro-container2 {
+            display: none;
+            text-align: center;
+            justify-content: center;
+            font-size: 20;
+        }
+        .intro-container3 {
+            display: none;
+            text-align: left;
+            justify-content: left;
+            font-size: 15;
+        }
+        .intro-container4 {
+            display: none;
+            text-align: center;
+            justify-content: center;
+        }
+        .leftcontent-container {
+            position: relative;
+            width: 365px;
+            height: 210px;
+            margin-left: 10px;
+            display: none;
+        }
+        #infoArea1 {
+            font-size: 14px;
+            font-family: myFont3, sans-serif;
+            text-align: center;
+            justify-content: center;
+		}
+        #infoArea2 {
+            font-size: 10px;
+            font-family: myFont3, sans-serif;
+            text-align: left;
+            justify-content: left;
+            color: #C0C0C0;
+		}
+        #resultArea {
+            font-family: myFont3, sans-serif;
+		}
+        #guessesArea {
+            font-size: 14;
+            font-family: myFont3, sans-serif;
+		}
+        .playAgain-container {
+			margin-top: 5px;
+            display: none;
+		}
+        .playAgain-container button {
+            width: 200px;
+            height: 45px;
+            background-image: url('https://marinemorales.com/Code/tortillaBackground.PNG');
+            background-size: cover;
+            background-position: center;
+            font-family: myFont3, sans-serif;
+			font-size: 20;
+            text-align: center;
+            color: #74D208;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+		}
+        .music-container {
+            text-align: right;
+            justify-content: right;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+		}
+        .music-container button {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            font-family: myFont3, sans-serif;
+			font-size: 10;
+            text-align: left;
+            justify-content: left;
+		}
+        .right-container {
+            position: relative;
+            margin-left: 34px;
+            width: 194px;
+            height: 400px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .taco {
+            position: absolute;
+            top: -50px;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+        .rightcontent-container {
+            height: auto;
+			width: auto;
+            position: relative;
+            z-index: 2;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .rightcontent-container button {
+            width: 80px;
+            height: 80px;
+            font-family: myFont3, sans-serif;
+			font-size: 16px;
+            text-align: center;
+            border-color: black;
+            color: #74D208;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+            background-image: url('https://marinemorales.com/Code/tortillaBackground.PNG');
+            background-size: cover;
+            background-position: center;
+        }
+        #boardArea {
+			margin-top: 20px;
+            margin-bottom: 20px;
+            width: 80px;
+            height: auto;
+            display: grid;
+			grid-template-rows: repeat(3, 80px);
+			gap: 5px;
+		}
+        .cell-input {
+            background-image: url('https://marinemorales.com/Code/tortillaBackground.PNG');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #000000;
+            width: 80px;
+            height: 80px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+            text-align: center;
+            font-family: myFont3, sans-serif;
+			font-size: 50px;
+            color: #74D208;
+			cursor: pointer;
+			font-weight: bold;
+			transition: transform 0.3s ease-in-out;
+            box-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5), 1px -1px 0 rgba(0, 0, 0, 0.5), -1px 1px 0 rgba(0, 0, 0, 0.5), 3px 3px 0 rgba(0, 0, 0, 0.5);
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+		}
+        ul {
+            padding-left: 20px;   /* or whatever value you prefer */
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="left-container">
+            <div class="title-container">
+                <h1>TACODE</h1>
+            </div>
+            <div class="intro-container">
+                <div class="intro-container1">
+                    <p>Your Taqueria Has Randomly Picked The Unlimited Taco Dinner Winner!</p> 
+                    <button id="nextIntroButton1" onclick="nextButton1()">Next</button>
+                </div>
+                <div class="intro-container2">
+                    <p>Guess The 3-digit Order Number That Has Won.</p>
+                    <p>You Have 10 Guesses.</p>
+                    <button id="nextIntroButton2" onclick="nextButton2()">Next</button>
+                </div>
+                <div class="intro-container3">
+                    <p>The Clues Given Are ...</p>
+                    <ul>
+                        <li><strong>🥯</strong> - None of the Digits is Correct.</li>
+                        <li><strong>🍕</strong> - One Digit is Correct But in the Wrong Position.</li>
+                        <li><strong>🌮</strong> - One Digit is Correct And in the Right Position.</li>
+                    </ul>
+                </div>
+                <div class="intro-container4">
+                    <button id="startGameButton" onclick="startGame()">Start Game</button>
+                </div>
+            </div>
+            <div class="leftcontent-container">
+                <div id="infoArea1">
+                    <p>Guess The Winning 3-digit Order Number</p>
+                </div>
+                <div id="infoArea2">
+                    <p>Reminder, the clues mean ...</p>
+                    <ul>
+                        <li><strong>🥯</strong> - 0 Correct Digit</li>
+                        <li><strong>🍕</strong> - 1 Correct Digit But in Wrong Position</li>
+                        <li><strong>🌮</strong> - 1 Correct Digit And in Right Position</li>
+                    </ul>
+                </div>
+                <div id="guessesArea">
+                    <p>You have <span id="remaining-guesses">10</span> guesses left</p>
+                </div>
+                <div id="resultArea">
+                    <p id="resultText"></p>
+                </div>
+                <div class="playAgain-container">
+                    <button id="playAgainButton" onclick="playAgain()">Play Again</button>
+                </div>
+                <div class="music-container">
+                    <button id="pause-music-button" onclick="pauseMusic()">🎵</button>
+                </div>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="taco-container">
+            </div>
+            <div class="rightcontent-container">
+                <div id="boardArea">
+                    <div class="cell">
+                        <input class="cell-input" type="number" min="0" max="9" value="0">
+                    </div>
+                    <div class="cell">
+                        <input class="cell-input" type="number" min="0" max="9" value="0">
+                    </div>
+                    <div class="cell">
+                        <input class="cell-input" type="number" min="0" max="9" value="0">
+                    </div>
+                </div>
+                <button id="submit-button" onclick="submitGuess()">Submit</button>
+            </div>
+        </div>
+    </div>
+	<audio id="background-music" src="https://marinemorales.com/Code/texmex.mp3" preload="auto"></audio>
+    <audio id="click-sound" src="https://marinemorales.com/Code/click.wav" preload="auto"></audio>
+
+    <script>
+        // Get references to all the HTML elements that will be manipulated by the code
+        let leftContainer = document.querySelector('.left-container');
+        let titleContainer = document.querySelector('.title-container');
+        let introContainer = document.querySelector('.intro-container');
+        let introContainer1 = document.querySelector('.intro-container1');
+        let nextIntroButton1 = document.getElementById('nextIntroButton1');
+        let introContainer2 = document.querySelector('.intro-container2');
+        let nextIntroButton2 = document.getElementById('nextIntroButton2');
+        let introContainer3 = document.querySelector('.intro-container3');
+        let introContainer4 = document.querySelector('.intro-container4');
+        let startGameButton = document.getElementById('startGameButton');
+        let leftContentContainer = document.querySelector('.leftcontent-container');
+        let resultArea = document.getElementById("resultArea");
+        let resultText = document.getElementById("resultText");
+        let guessesArea = document.getElementById("guessesArea");
+        let remainingGuesses = document.getElementById('remaining-guesses');
+        let infoArea1 = document.getElementById("infoArea1");
+        let infoArea2= document.getElementById("infoArea2");
+        let musicContainer = document.querySelector('.music-container');
+        let pauseMusicButton = document.getElementById('pause-music-button');
+        let playAgainContainer = document.querySelector('.playAgain-container');
+        let playAgainButton = document.getElementById('playAgainButton');
+        let rightContainer = document.querySelector('.right-container');
+        let tacoContainer = document.querySelector('.taco-container');
+        let rightContentContainer = document.querySelector('.rightcontent-container');
+        let boardArea = document.getElementById("boardArea");
+        let cellInputs = document.querySelectorAll('.cell-input');
+        let submitGuessButton = document.getElementById('submit-button');
+    
+        // DOM elements
+		const backgroundMusic = document.getElementById('background-music');
+        const clickSound = document.getElementById('click-sound');
+
+        // Initialise Scores & variables
+        let cellInputValues = [];
+        let secretNum = getSecretNum();
+        let guessesTaken = 1;
+        const MAX_GUESS = 10;
+
+        // Function to handle the falling tacos
+        function addTaco() {
+            // Create a new taco element
+            const taco = document.createElement('img');
+            taco.src = 'https://marinemorales.com/Code/Taco.png';
+            taco.className = 'taco';
+            // Randomize the left position, animation duration and size
+            const leftPos = Math.random() * (tacoContainer.clientWidth) - 25;
+            const duration = Math.random() * 3 + 2;  // between 2 and 7 seconds
+            const size = Math.random() * 50 + 30;  // between 50 and 100 pixels
+            // Style the CSS
+            taco.style.left = `${leftPos}px`;
+            taco.style.animationDuration = `${duration}s`;
+            taco.style.width = `${size}px`;
+            // Add the taco to the body
+            tacoContainer.appendChild(taco);
+            // Remove the taco after it has fallen
+            setTimeout(() => {
+                tacoContainer.removeChild(taco);
+            }, duration * 1000);
+        }
+
+        // Add a new taco every half second
+        setInterval(addTaco, 300);
+        
+        // Function to pause the music
+        function pauseMusic() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                pauseMusicButton.style.backgroundColor = 'red';
+            } else {
+                backgroundMusic.pause();
+                pauseMusicButton.style.backgroundColor = '#74D208';
+            }
+        }
+
+        // Function to save the combination
+		function handleCellClick(index, event) {   
+            clickSound.currentTime = 0;
+		    clickSound.play();
+            // Save the input value in the array
+            cellInputValues[index] = event.target.value;
+        }
+
+        // Function to get the secret order number
+        function getSecretNum() {
+            const numbers = [...Array(10).keys()];
+            const shuffled = numbers.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 3).join('');
+        }
+
+        // Function to get the secret order number
+        function getClues(guess, secretNum) {
+            // Player has found all the correct numbers
+            if (guess === secretNum) {
+                resultText.style.marginTop = "5px";
+                resultText.style.fontSize = "15px";
+                return 'Tacolicious! You got it!';
+            }
+            const clues = [];
+            // Player has found some of the correct numbers
+            for (let i = 0; i < guess.length; i++) {
+                if (guess[i] === secretNum[i]) {
+                    clues.push('🌮');
+                } else if (secretNum.includes(guess[i])) {
+                    clues.push('🍕');
+                }
+            }
+            if (clues.length === 0) {
+                return '🥯';
+            }
+            // Player has found no correct numbers
+            return clues.sort().join(' ');
+        }
+
+        // Function validating the player's guess
+        function submitGuess() {
+            // Concatenate the array values
+            let guess = cellInputValues.join('');
+            // Print the clues
+            resultText.innerHTML = getClues(guess, secretNum);
+            guessesTaken++;
+            if (guess === secretNum || guessesTaken > MAX_GUESS) {
+                submitGuessButton.disabled = true;
+                boardArea.removeEventListener('change', handleCellClick);
+                guessesArea.style.display = 'none';
+                playAgainContainer.style.display = 'block';
+                // Game over: Maximum number of guesses has been reached
+                if (guessesTaken > MAX_GUESS) {
+                    resultText.style.marginTop = "5px";
+                    resultText.style.fontSize = "15px"
+                    resultText.innerHTML = 'You ran out of guesses. <br> The answer was ' + secretNum + '.';
+                }
+            } else {
+                // Guesses: Remaining guesses
+                remainingGuesses.textContent = (MAX_GUESS - guessesTaken + 1);
+            }
+        }
+
+        // Function to switch intro from fram 1 to 2
+        function nextButton1() {
+            introContainer1.style.display = 'none';
+            introContainer2.style.display = 'block';
+        }
+
+        // Function to switch intro from fram 2 to 3
+        function nextButton2() {
+            introContainer2.style.display = 'none';
+            introContainer3.style.display = 'block';
+            introContainer4.style.display = 'block';
+        }
+
+        // Function to play again
+		function playAgain() {
+            // Hiding game containers
+            infoArea1.style.display = 'none';
+            infoArea2.style.display = 'none';
+            musicContainer.style.display = 'none';
+            resultArea.style.display = 'none';
+            leftContentContainer.style.display = 'none';
+            rightContentContainer.style.display = 'none';
+			playAgainContainer.style.display = 'none';
+            //Resetting intro containers
+            introContainer.style.display = 'block';
+            introContainer1.style.display = 'block';
+			// Reinitialising variables
+            resultText.innerText = '';
+            backgroundMusic.pause();
+            pauseMusicButton.style.backgroundColor = 'red';
+		}
+
+        // Function to launch the game
+		function initialiseGame() {
+            infoArea1.style.display = 'block';
+            infoArea2.style.display = 'block';
+            musicContainer.style.display = 'block';
+            resultArea.style.display = 'block';
+            guessesArea.style.display = 'block';
+            secretNum = getSecretNum();
+            // Add event listeners to each cell-input
+            cellInputs.forEach((cellInput, index) => {
+                cellInput.addEventListener('change', (event) => handleCellClick(index, event)); // <-- pass index into handleCellClick
+            });
+            guessesTaken = 1;
+            remainingGuesses.textContent = 10;
+            resultText.style.marginTop = "-15px";
+            resultText.style.fontSize = "40px"
+		}
+
+        // Function to start the game via button
+        function startGame() {
+            introContainer3.style.display = 'none';
+            introContainer4.style.display = 'none';
+            introContainer.style.display = 'none';
+            backgroundMusic.loop = true;
+            backgroundMusic.play();
+            leftContentContainer.style.display = 'block';
+            rightContentContainer.style.display = 'flex';
+            submitGuessButton.disabled = false;
+		    initialiseGame();
+        }
+	</script>
+</body>
+</html>

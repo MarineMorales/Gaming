@@ -1,0 +1,43 @@
+<!-- Tacode | html intro -->
+<html lang="en">
+<body>
+    <div id="welcomeArea5" style="display: none;">
+        <button id="playButton5" onclick="welcome5()">Play</button>
+    </div>
+	
+	<div id="playArea5" style="display: none;">
+		<iframe id="playFrame5" width="800" height="420" style="border:none;"></iframe>
+    </div>
+
+	<div id="goodbyeArea5" style="display: none;">
+		<button id="goodbyeButton5" onclick="goodbye5();">Exit Game</button>
+    </div>
+
+    <script>
+		
+		const playFrame5 = document.getElementById('playFrame5');
+		const playButton5 = document.getElementById('playButton5');
+		const goodbyeButton5 = document.getElementById('goodbyeButton5');
+		
+		welcomeArea5.style.display = "block";
+		playButton5.style.display = "inline-block";
+	
+        function welcome5() {
+			playArea5.style.display = "block";
+			playFrame5.src = 'https://marinemorales.com/Code/05.Tacode.html';
+			goodbyeArea5.style.display = "block";
+			goodbyeButton5.style.display = "inline-block";
+			welcomeArea5.style.display = "none";
+            playButton5.style.display = "none";
+        }
+		
+		function goodbye5() {
+		    playArea5.style.display = "none";
+			playFrame5.src = '';
+			goodbyeArea5.style.display = "none";
+            welcomeArea5.style.display = "block";
+            playButton5.style.display = "inline-block";
+        }
+    </script>
+</body>
+</html>
