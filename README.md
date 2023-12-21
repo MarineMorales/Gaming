@@ -53,10 +53,9 @@ But if the second player guesses incorrectly, the first player draws a single bo
 
 **9. Hungry Kitten**
 
-**Rules**: Your feline friend is on a mission to catch five juicy birds before settling down for a well-deserved nap. As your Hungry Kitty roams around the house patio in pursuit of its prey, it will come across various types of food to keep its energy up. Scrumptious delights such as chicken, tuna, and shrimp will help your kitty grow larger, while toxic treats like broccoli, chocolate, and onions will make it sick and shrink in size. Watch out! As your kitty grows, so does its hitbox, increasing the chances of accidentally consuming toxic food.
-Feeling stuck? Click anywhere on the screen to make new items appear - but beware! Both delicious and toxic foods may materialize with each click. Control your Hungry Kitty using either the WASD keys or arrow keys on your keyboard, and press ESC to exit the game. Have fun and enjoy this delightful adventure!
+**Rules**: Your feline friend is on a mission to catch five juicy birds before settling down for a well-deserved nap. As your Hungry Kitty roams around the house patio in pursuit of its prey, it will come across various types of food to keep its energy up. Watch out! As your kitty grows, so does its hitbox, increasing the chances of accidentally consuming toxic food.
 
-**Python Main Mechanics**: Unlike our text-based games, this game has graphics and music and uses the mouse. To to delve into the world of interactive media creation, we use Pygame. Pygame is a popular Python library specifically designed for writing video games. It provides modules for handling graphics, sound, and input devices, enabling developers to create games and multimedia applications in Python with relative ease. Pygame introduces concepts like game loops, event handling, and rendering, which are fundamental in game development.
+**Python Main Mechanics**: Unlike our text-based games, this game has graphics and music and uses the mouse. To to delve into the world of interactive media creation, we use Pygame. It is a popular Python library specifically designed for writing video games providing modules for handling graphics, sound, input devices, game loops, event handling, and event rendering.
 
 ## How to run the python games in your Command Prompt
 
